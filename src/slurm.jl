@@ -29,6 +29,9 @@ function launch(manager::SlurmManager, params::Dict, instances_arr::Array,
                 end
             else
                 k2 = replace(string(k), "_"=>"-")
+                if k2=="env"
+                    k2="export"
+                end
                 val = p[k]
                 if length(val) > 0
                     push!(srunargs, "--$(k2)=$(p[k])")
